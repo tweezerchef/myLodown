@@ -275,8 +275,168 @@ for (let i = 0; i < arr.length; i++){
      //return new arr 
     return newArr;
  }
+/**
+ * function map: takes a collection and a function. loops through the collection
+ *  elements or properties, running the given function on each and returning a new
+ * array with the return of each function
+ * @param{array or object} colec: the collection to loop through
+ * @param{function} func: the function to run on each element/property and what it returns
+ * 
+ */
+function map(collec, func){
+    // create return array
+    let newArr = [];
+    // if array is array for loop
+    if(Array.isArray(collec)){
+        for (let i = 0; i < collec.length; i++)
+       newArr.push(func(collec[i], i, collec))
+    }
+    // else if array is object use a for in loop to do the same thing
+    else{
+        for (let key in collec){
+            newArr.push(func(collec[key], key, collec))
+        }
+    } 
+  // return new arr
+    return newArr
+}
+/**
+ * function pluck: takes an array of object and a property. creates a new array with the
+ * value of each objects property that matches the given property
+ * @param{array of objects} arrOfObj: the array of objects to loop through
+ * @param{string} prop: the string representing the properties value to find 
+ */
+function pluck(arrOfObj, prop){
+    //let new arr = return of .map 
+  let newArr =  _.map(arrOfObj, function(element){
+       return element[prop] 
+    })
+    // return newArr
+    return newArr
+}
+/**
+ * function every: takes a collection and loops through each collections elements/properties
+ * runs given function on each and if any are false returns false otherwise returns true
+ * if no function is provided returns false if any element/propert is falsey otherwise
+ * returns true
+ * @param{array or object} collection: an array or object to loop through
+ * @param{function} func: function to run of property/element that returns true or false
+ */
+function every(collection, func){
+    if(func === undefined ){
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if collection[i] is truthy
+                if(!collection[i]){
+                    //return false;
+                    return false;
+                }
+            }
+        } else { //else
+            //iterate through object
+            for(let key in collection){
+                //determine if collection[key] is truthy
+                if(!collection[key]){
+                    //return false;
+                    return false;
+                }
+            }
+        }
+    } else{ //else
+        //determine if collection is an array
+        if(Array.isArray(collection)){
+            //iterate through collections array
+            for(let i = 0; i < collection.length; i++){
+                //determine if invoking func on the params is false
+                if(func(collection[i], i, collection) === false){
+                    //return false
+                    return false;
+                }
+            }
+        } else{ //else its an object
+            //iterate through object
+            for(let key in collection){
+                //determine if invoking func on the params is false
+                if(func(collection[key], key, collection) === false)
+                {   //return false;
+                    return false;
+                }
+            }
+        }
+    }//return true
+    return true;
+     }
+/**
+ * function some: loops through a collection runnign a function on each
+ * element/property.  If any of the return values of the funtion are true
+ * returns true, if all return false returns false. if no function is provide
+ * returns true if any element/property is truthy otherwise returns false
+ * @param{array or object} collec: the array or object to loop trough
+ * @param{function} func: the function to run on element/property and which
+ * returns true or false
+ */
+function some(collec, func){
+    // test if there is a function
+    if(!func){
+        //test if its is an array
+        if (Array.isArray(collec)){
+            // loop through elements in collec if any element is true treturn true
+            for (let i = 0; i < collec.length; i++){
+                if(collec[i] === true){
+                    return true;
+                }
+            }
+        //return false if not
+        return false;
+        }
+        //else if collec is object
+        else{
+            //for in loop for collec
+            for (let key in collec){
+                if (key === true){
+                    return true;
+                }
+            }
+        // else return false
+            return false;
+        }
 
- 
+    }
+    // test for array
+    else if (Array.isArray(collec)){
+        // loop through array
+        for (let i = 0; i < collec.length; i++){
+            // call a func with params = element, index, colec
+            // if any elememt is true return true
+            if(func(collec[i], i, collec) === true){
+                //return true
+                return true;
+            }
+        }
+        //eslse return false
+        return false
+    }
+    else{
+        //loop through object if any return == true return true
+        for (let key in collec){
+            if(func(collec[key], key, collec) === true){
+                return true
+            }
+        }
+        // else return false
+        return false
+    }
+}
+/**
+ * function reduce : takes an array a function and a seed. it returns an acumulater
+ * which records the functions effects of running its cumulative affects on
+ * 
+ * 
+ * 
+ * 
+ */
 
 
 module.exports.each = each;
