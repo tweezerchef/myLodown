@@ -67,8 +67,8 @@ function each(collection, action) {
 
 /** 
  * first: the first function takes an array, and a number and returns the first x number
- * of the array. If the num is negative or the array paramater is not an array it returns
- * an empty array, if the num paramater is not a number first returns the first element
+ * of the array. If the num is negative or the array parameter is not an array it returns
+ * an empty array, if the num parameter is not a number first returns the first element
  * of the array
  * @param {array} array: takes the array to run function on
  * @param {number} num: takes the number of elements to output 
@@ -107,7 +107,7 @@ function first(array, num){
 function first(array, num){
     // create empty output of array
     let newArr = [];
-    // if array is not an array or is number is negativee return []
+    // if array is not an array or is number is negative return []
     if (!Array.isArray(array) || num < 0){
         return [];
     }
@@ -129,7 +129,7 @@ function first(array, num){
    }
 /**
  * function 'index of' takes a value and returns the index
- * of that value on its first occurrance
+ * of that value on its first occurrence
  * @param{array} arr: takes the array to look for element
  * @param{value} val: takes the value the function is searching fo
  */
@@ -147,7 +147,7 @@ return -1
 /**
  * function contains: takes an array and returns true if the value exists
  * and false if not
- * @param{array} arr: takes an array to loop throuh 
+ * @param{array} arr: takes an array to loop through 
  * @param{value} val: takes any value to look for in given array
  */
 // create a contains function that takes in an array and value as args
@@ -188,7 +188,7 @@ function contains(arr, val){
 }
 /**
  * function unique: takes an array and returns a new array with all duplicates removed
- * @param{array} array: the orginal array to loop through and find dupes
+ * @param{array} array: the original array to loop through and find dupes
  * 
  */
  function unique(array){
@@ -196,7 +196,7 @@ function contains(arr, val){
     let testObject = {};
     //create loop to take an element from test array
     for (let i = 0; i < array.length; i++){
-        // create test to see if array element alreay exists in object, if not add to object
+        // create test to see if array element already exists in object, if not add to object
         // and newArr
         if(array[i] in testObject === false){
             testObject[array[i]] = 'true';
@@ -252,7 +252,7 @@ for (let i = 0; i < arr.length; i++){
 /**
  * function partition: takes an array and an function, loops through the array
  * when the provided function returns true it puts the element in one subarray
- * and when false puts element in other subaray. Returns new 2-d array
+ * and when false puts element in other subarray. Returns new 2-d array
  * @param{array} arr: takes the array to partition
  * @param{function} func: the function to run on the elements in array
  * */
@@ -317,7 +317,7 @@ function pluck(arrOfObj, prop){
 /**
  * function every: takes a collection and loops through each collections elements/properties
  * runs given function on each and if any are false returns false otherwise returns true
- * if no function is provided returns false if any element/propert is falsey otherwise
+ * if no function is provided returns false if any element/propers is falsey otherwise
  * returns true
  * @param{array or object} collection: an array or object to loop through
  * @param{function} func: function to run of property/element that returns true or false
@@ -369,8 +369,8 @@ function every(collection, func){
     return true;
      }
 /**
- * function some: loops through a collection runnign a function on each
- * element/property.  If any of the return values of the funtion are true
+ * function some: loops through a collection running a function on each
+ * element/property.  If any of the return values of the function are true
  * returns true, if all return false returns false. if no function is provide
  * returns true if any element/property is truthy otherwise returns false
  * @param{array or object} collec: the array or object to loop trough
@@ -382,7 +382,7 @@ function some(collec, func){
     if(!func){
         //test if its is an array
         if (Array.isArray(collec)){
-            // loop through elements in collec if any element is true treturn true
+            // loop through elements in collec if any element is true return true
             for (let i = 0; i < collec.length; i++){
                 if(collec[i] === true){
                     return true;
@@ -415,7 +415,7 @@ function some(collec, func){
                 return true;
             }
         }
-        //eslse return false
+        //else return false
         return false
     }
     else{
@@ -432,7 +432,7 @@ function some(collec, func){
 /**
  * function reduce : takes an array a function and a seed. it returns an accumulated value
  * based on what the functions result is on each element.  The seed defaults to the first 
- * element, if it is not entered.  If a seed is used it becomes the first value in the acumulator
+ * element, if it is not entered.  If a seed is used it becomes the first value in the accumulator
  * @param{array} ar: any array to run function on
  * @param{function} func: the function which is applied to each element
  * @param{any value}seed: any value to be used on the first iteration as the accumulators  initial value
@@ -454,6 +454,26 @@ function some(collec, func){
         }
         return preRes;
     }
+}
+
+/**
+ * function extend
+ * Extend takes multiple objects and returns one object.  If there are matching keys
+ * in an object the last object with those keys will be used in the final object
+ * as well as their corresponding value
+ * @param{Object} obj1: the first object for which all subsequent objects will be 
+ * copied into
+ * @param{Objects} ...objs: any number of objects to copy or extend into obj1
+ * 
+ */
+ _.extend = function(obj1,...objs){
+    // create a for in loop through objs key value pair and add to obj1
+    for (let i = 0; i < objs.length; i++){
+       for (let key in objs[i]){
+           obj1[key] = objs[i][key];
+       }
+   }
+   return obj1;
 }
 
 
