@@ -204,7 +204,7 @@ function contains(arr, val){
         }
     }  
     //return new array
-    console.log(testObject)
+    //console.log(testObject)
       return newArr;
     }
 /**
@@ -430,13 +430,31 @@ function some(collec, func){
     }
 }
 /**
- * function reduce : takes an array a function and a seed. it returns an acumulater
- * which records the functions effects of running its cumulative affects on
- * 
- * 
- * 
- * 
- */
+ * function reduce : takes an array a function and a seed. it returns an accumulated value
+ * based on what the functions result is on each element.  The seed defaults to the first 
+ * element, if it is not entered.  If a seed is used it becomes the first value in the acumulator
+ * @param{array} ar: any array to run function on
+ * @param{function} func: the function which is applied to each element
+ * @param{any value}seed: any value to be used on the first iteration as the accumulators  initial value
+ * */
+ _.reduce = function(arr, func, seed){
+    // check if there is no seed given use first ellement if arr as seed     
+    if (seed === undefined){
+        let preRes = arr[0];
+        for(let i = 1; i < arr.length; i++){
+            preRes = func(preRes, arr[i], i)
+            }
+        return preRes;
+    }
+    else{
+    let preRes = seed
+    // call a fuction for every element of collec using loop using args previous result, element, index
+        for(let i = 0 ; i < arr.length; i++){
+        preRes = func(preRes, arr[i], i)
+        }
+        return preRes;
+    }
+}
 
 
 module.exports.each = each;
