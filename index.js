@@ -9,6 +9,7 @@
  * @param {Array or Object} collection: The collection over which to iterate.
  * @param {Function} action: The Function to be applied to each value in the 
  * collection
+ * @return{array or object}: Modified array or object 
  */
 function each(collection, action) {
     if(Array.isArray(collection)) {
@@ -23,7 +24,8 @@ function each(collection, action) {
 }
 /**
  * typeOf : take a value and output its type as a string
- * @param{any value} any value for the function to evaluate 
+ * @param{any value} any value for the function to evaluate
+ * @return{string}: outputs a string of the values type  
  */
  function typeOf(value){
     // create test for objects and arrays returning string of either object or array
@@ -71,7 +73,8 @@ function each(collection, action) {
  * an empty array, if the num parameter is not a number first returns the first element
  * of the array
  * @param {array} array: takes the array to run function on
- * @param {number} num: takes the number of elements to output 
+ * @param {number} num: takes the number of elements to output
+ * @return {array} returns an array with only the first n values 
 */
 function first(array, num){
     // create empty output of array
@@ -80,7 +83,7 @@ function first(array, num){
     if (!Array.isArray(array) || num < 0){
         return [];
     }
-    //  else if number isnt a number return array[0]
+    //  else if number isn't a number return array[0]
     else if (typeof num !== "number"){
         return array[0];
     }
@@ -94,7 +97,7 @@ function first(array, num){
         for (let i = 0; i < num; i++){
             newArr.push(array[i]);
         }
-        //return new aray
+        //return new array
         return newArr;
     }
 }
@@ -102,7 +105,8 @@ function first(array, num){
  * last: returns the last elements of an array for the number given 
  * 
  * @param{array} array: takes the array that function runs on
- * @param{number} num: takes the last number of elements to return *
+ * @param{number} num: takes the last number of elements to return 
+ * @return{array} returns the last n elements of the array as new array
  */
 function first(array, num){
     // create empty output of array
@@ -111,7 +115,7 @@ function first(array, num){
     if (!Array.isArray(array) || num < 0){
         return [];
     }
-    //  else if number isnt a number return last element of array
+    //  else if number isn't a number return last element of array
     else if (typeof num !== "number"){
         return array[array.length - 1];
     }
@@ -131,7 +135,8 @@ function first(array, num){
  * function 'index of' takes a value and returns the index
  * of that value on its first occurrence
  * @param{array} arr: takes the array to look for element
- * @param{value} val: takes the value the function is searching fo
+ * @param{value} val: takes the value the function is searching for
+ * @return{number} returns the element number where the value is found 
  */
 function indexOf(arr, val){
    // create loop that loops through array
@@ -149,6 +154,7 @@ return -1
  * and false if not
  * @param{array} arr: takes an array to loop through 
  * @param{value} val: takes any value to look for in given array
+ * @return{boolean} true or false based on whether the value exists or not
  */
 // create a contains function that takes in an array and value as args
 function contains(arr, val){
@@ -168,11 +174,12 @@ function contains(arr, val){
  * @param{array or object} collection: any array or collection
  * @param{function} func: the function you would like to apply to the looped
  * collection
+ * @return{value}: returns whatever the callback function returns
  */
  function each(collection, func){
     //test if collection is a array
     if(Array.isArray(collection)){
-    //call input function on each ellement of array
+    //call input function on each element of array
       for (let i = 0; i < collection.length; i++){
         func(collection[i], i, collection);
       }
@@ -189,7 +196,7 @@ function contains(arr, val){
 /**
  * function unique: takes an array and returns a new array with all duplicates removed
  * @param{array} array: the original array to loop through and find dupes
- * 
+ * @return{array} returns array with all duplicates removed
  */
  function unique(array){
     let newArr = [];
@@ -213,6 +220,7 @@ function contains(arr, val){
  * is returned
  * @param{array} arr: the array to loop through
  * @param{function} func: the function to preform
+ * @return{array} returns a new array with all the values that === true in the return of the callback function
  */
  function filter(arr, func){
     // create a new array of elements to return
@@ -234,6 +242,7 @@ for (let i = 0; i < arr.length; i++){
  * into a new array.  The new array is returned
  * @param{array} arr: the array to loop through
  * @param{function} func: the function to run on each element in array
+ * @return{array} returns a new array composed of all the elements that the callback function returned as false
  */
 function reject(arr, func){
     // create empty output array
@@ -281,7 +290,7 @@ for (let i = 0; i < arr.length; i++){
  * array with the return of each function
  * @param{array or object} colec: the collection to loop through
  * @param{function} func: the function to run on each element/property and what it returns
- * 
+ * @return{array or object} returns a new array or object with the results of the function on each element as new values
  */
 function map(collec, func){
     // create return array
@@ -304,7 +313,8 @@ function map(collec, func){
  * function pluck: takes an array of object and a property. creates a new array with the
  * value of each objects property that matches the given property
  * @param{array of objects} arrOfObj: the array of objects to loop through
- * @param{string} prop: the string representing the properties value to find 
+ * @param{string} prop: the string representing the properties value to find
+ * @return{array} returns a new array with only the values that match the property 
  */
 function pluck(arrOfObj, prop){
     //let new arr = return of .map 
@@ -321,6 +331,7 @@ function pluck(arrOfObj, prop){
  * returns true
  * @param{array or object} collection: an array or object to loop through
  * @param{function} func: function to run of property/element that returns true or false
+ * @return{boolean} returns true if all elements return true on callback function else false
  */
 function every(collection, func){
     if(func === undefined ){
@@ -376,6 +387,7 @@ function every(collection, func){
  * @param{array or object} collec: the array or object to loop trough
  * @param{function} func: the function to run on element/property and which
  * returns true or false
+ * @return{boolean} returns true if any of the functions returns are true else false
  */
 function some(collec, func){
     // test if there is a function
@@ -409,7 +421,7 @@ function some(collec, func){
         // loop through array
         for (let i = 0; i < collec.length; i++){
             // call a func with params = element, index, colec
-            // if any elememt is true return true
+            // if any element is true return true
             if(func(collec[i], i, collec) === true){
                 //return true
                 return true;
@@ -436,9 +448,10 @@ function some(collec, func){
  * @param{array} ar: any array to run function on
  * @param{function} func: the function which is applied to each element
  * @param{any value}seed: any value to be used on the first iteration as the accumulators  initial value
- * */
+ * @return{any value} returns the accumulator
+ *  */
  _.reduce = function(arr, func, seed){
-    // check if there is no seed given use first ellement if arr as seed     
+    // check if there is no seed given use first element if arr as seed     
     if (seed === undefined){
         let preRes = arr[0];
         for(let i = 1; i < arr.length; i++){
@@ -448,7 +461,7 @@ function some(collec, func){
     }
     else{
     let preRes = seed
-    // call a fuction for every element of collec using loop using args previous result, element, index
+    // call a function for every element of collec using loop using args previous result, element, index
         for(let i = 0 ; i < arr.length; i++){
         preRes = func(preRes, arr[i], i)
         }
@@ -464,7 +477,7 @@ function some(collec, func){
  * @param{Object} obj1: the first object for which all subsequent objects will be 
  * copied into
  * @param{Objects} ...objs: any number of objects to copy or extend into obj1
- * 
+ * @return{Object} returns the combined objects
  */
  _.extend = function(obj1,...objs){
     // create a for in loop through objs key value pair and add to obj1
