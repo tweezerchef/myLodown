@@ -188,7 +188,7 @@ function contains(arr, val) {
  * @param{array or object} collection: any array or collection
  * @param{function} func: the function you would like to apply to the looped
  * collection
- * @return{value}: returns whatever the callback function returns
+ * 
  */
 function each(collection, func) {
   //test if collection is a array
